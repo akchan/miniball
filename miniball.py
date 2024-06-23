@@ -23,7 +23,7 @@ import numpy
 
 
 __author__ = "Alexandre Devert <marmakoide@hotmail.fr>"
-__version__ = "1.2.0"
+__version__ = "1.2.1"
 
 
 def get_circumsphere(S):
@@ -79,7 +79,8 @@ def get_bounding_ball(S, epsilon=1e-7, rng=numpy.random.default_rng()):
 
     def circle_contains(D, p):
         c, r2 = D
-        return numpy.square(p - c).sum() <= r2
+        distance = numpy.square(p - c).sum()
+        return distance <= r2 or numpy.isclose(distance, r2)
 
     def get_boundary(R):
         if len(R) == 0:
